@@ -4,3 +4,5 @@
     [headers.values]
     Access-Control-Allow-Origin = "*"
     # Add other necessary headers
+[build]
+  functions = "functions"
