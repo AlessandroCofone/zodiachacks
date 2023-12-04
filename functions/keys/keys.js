@@ -1,4 +1,4 @@
-// netlify/functions/keys.js
+//.netlify/functions/keys.js
 exports.handler = async function (event, context) {
   try {
     // Fetch and return the API keys from your secure storage
