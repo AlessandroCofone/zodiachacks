@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/keys', (req, res) => {
+app.get('https://golden-lamington-70f6c8.netlify.app/api/keys', (req, res) => {
   const keys = {
     googleApiKey: process.env.GOOGLE_API_KEY,
     astrologyUserId: process.env.ASTROLOGY_USER_ID,
@@ -21,7 +21,7 @@ app.get('/api/keys', (req, res) => {
   res.json(keys);
 });
 
-app.post('/api/location', async (req, res) => {
+app.post('https://golden-lamington-70f6c8.netlify.app/api/location', async (req, res) => {
   const { location } = req.body;
 
   try {
