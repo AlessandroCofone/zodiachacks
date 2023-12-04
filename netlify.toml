@@ -5,12 +5,3 @@
 [build]
   functions = "netlify/functions"  # Specify the directory where your Netlify functions are located
   publish = "public"  # Specify the directory to deploy (adjust if your static files are in a different directory)
-
-[[plugins]]
-  package = "@netlify/plugin-functions-core"  # Use the functions core plugin
-
-[[plugins]]
-  package = "@netlify/plugin-functions-install"  # Use the functions install plugin
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"  # Use the Next.js plugin if applicable
