@@ -5,7 +5,7 @@ exports.handler = async function (event, context) {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      // Add other necessary headers here
+      'Access-Control-Allow-Headers': 'Content-Type',
     },
     body: JSON.stringify({
       googleApiKey: process.env.GOOGLE_API_KEY,
@@ -14,3 +14,4 @@ exports.handler = async function (event, context) {
     }),
   };
 };
+  

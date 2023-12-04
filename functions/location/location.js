@@ -11,7 +11,7 @@ exports.handler = async function (event, context) {
       statusCode: 200,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        // Add other necessary headers here
+        'Access-Control-Allow-Headers': 'Content-Type',
       },
       body: JSON.stringify({ /* your processed data here */ }),
     };
@@ -19,6 +19,10 @@ exports.handler = async function (event, context) {
     console.error('Error handling location data:', error);
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify({ error: 'Internal Server Error' }),
     };
   }
