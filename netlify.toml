@@ -4,4 +4,3 @@
       Access-Control-Allow-Origin = "*"
 [build]
   functions = "netlify/functions"  # Specify the directory where your Netlify functions are located
-  publish = "public"  # Specify the directory to deploy (adjust if your static files are in a different directory)
