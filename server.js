@@ -15,7 +15,7 @@ exports.handler = async function (event, context) {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://zodiac-hacks-a1a317.webflow.io',
+        'Access-Control-Allow-Origin': '*',
         // Add other necessary headers
       },
       body: JSON.stringify({ message: 'Hello World' }),
