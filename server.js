@@ -1,3 +1,5 @@
+// netlify/functions/server.js
+
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -5,27 +7,15 @@ const port = process.env.PORT || 3000;
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// server.js
-exports.handler = async function (event, context) {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        // Add other necessary headers
-      },
-      body: JSON.stringify({ message: 'Hello World' }),
-    };
-  };
-
 // Define routes
-app.post('/.netlify/functions/initAutocomplete', require('./netlify/functions/initAutocomplete').handler);
-app.post('/.netlify/functions/keys', require('./netlify/functions/keys').handler);
-app.post('/.netlify/functions/validateFormData', require('./netlify/functions/validateFormData').handler);
-app.post('/.netlify/functions/submitForm', require('./netlify/functions/submitForm').handler);
-app.post('/.netlify/functions/getLocationData', require('./netlify/functions/getLocationData').handler);
-app.post('/.netlify/functions/makeAstrologyApiRequest', require('./netlify/functions/makeAstrologyApiRequest').handler);
-app.post('/.netlify/functions/displayResults', require('./netlify/functions/displayResults').handler);
-app.post('/.netlify/functions/getTimeZone', require('./netlify/functions/getTimeZone').handler);
+app.post('/initAutocomplete', require('./initAutocomplete').handler);
+app.post('/keys', require('./keys').handler);
+app.post('/validateFormData', require('./validateFormData').handler);
+app.post('/submitForm', require('./submitForm').handler);
+app.post('/getLocationData', require('./getLocationData').handler);
+app.post('/makeAstrologyApiRequest', require('./makeAstrologyApiRequest').handler);
+app.post('/displayResults', require('./displayResults').handler);
+app.post('/getTimeZone', require('./getTimeZone').handler);
 
 // Start the server
 app.listen(port, () => {
