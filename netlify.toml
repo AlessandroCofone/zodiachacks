@@ -2,5 +2,3 @@
   for = "/.netlify/functions/*"
     [headers.values]
       Access-Control-Allow-Origin = "*"
-[build]
-  functions = "netlify/functions"  # Specify the directory where your Netlify functions are located
