@@ -1,3 +1,5 @@
+// netlify/functions/api.js
+
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
@@ -6,12 +8,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('https://golden-lamington-70f6c8.netlify.app/api/keys', (req, res) => {
+app.get('/.netlify/functions/api/keys', (req, res) => {
   const keys = {
     googleApiKey: process.env.GOOGLE_API_KEY,
     astrologyUserId: process.env.ASTROLOGY_USER_ID,
@@ -21,27 +22,13 @@ app.get('https://golden-lamington-70f6c8.netlify.app/api/keys', (req, res) => {
   res.json(keys);
 });
 
-app.post('https://golden-lamington-70f6c8.netlify.app/api/location', async (req, res) => {
+app.post('/.netlify/functions/api/location', async (req, res) => {
   const { location } = req.body;
 
   try {
-    const geoData = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: location,
-        key: process.env.GOOGLE_API_KEY,
-      },
-    });
-
-    if (geoData.data.results && geoData.data.results.length > 0) {
-      const locationData = geoData.data.results[0].geometry.location;
-      const timezone = await getTimeZone(locationData.lat, locationData.lng);
-
-      res.json({ locationData, timezone });
-    } else {
-      res.status(404).json({ error: 'Location not found. Please enter a valid location.' });
-    }
+    // Your existing code to fetch location data
   } catch (error) {
-    console.error('Google Maps API request failed:', error.message);
+    console.error('Error handling location data:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -67,3 +54,4 @@ function getTimeZone(lat, lon) {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+module.exports.handler = app;
