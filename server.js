@@ -11,6 +11,17 @@ app.get('/', (req, res) => {
   });
 });
 
+exports.handler = async function (event, context) {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': 'https://zodiac-hacks-a1a317.webflow.io',
+        // Add other necessary headers
+      },
+      body: JSON.stringify({ message: 'Hello World' }),
+    };
+  };
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
