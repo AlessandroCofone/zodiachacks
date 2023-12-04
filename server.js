@@ -19,6 +19,7 @@ exports.handler = async function (event, context) {
 
 // Define routes
 app.post('/.netlify/functions/initAutocomplete', require('./netlify/functions/initAutocomplete').handler);
+app.post('/.netlify/functions/keys', require('./netlify/functions/keys').handler);
 app.post('/.netlify/functions/validateFormData', require('./netlify/functions/validateFormData').handler);
 app.post('/.netlify/functions/submitForm', require('./netlify/functions/submitForm').handler);
 app.post('/.netlify/functions/getLocationData', require('./netlify/functions/getLocationData').handler);
