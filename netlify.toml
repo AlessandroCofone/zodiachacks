@@ -1,5 +1,4 @@
 [[headers]]
-  # Define the allowed origin(s)
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"

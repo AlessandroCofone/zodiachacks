@@ -1,29 +1,26 @@
-// netlify/functions/location.js
+const express = require('express');
+const serverless = require('serverless-http');
+const app = express();
+const router = express.Router();
 
-exports.handler = async function (event, context) {
-  try {
-    const { location } = JSON.parse(event.body);
-
-    // Your existing code to fetch location data
-    // ...
-
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-      body: JSON.stringify({ /* your processed data here */ }),
+// Netlify function to handle API key request
+router.get('/api/keys', (req, res) => {
+    const keys = {
+      googleApiKey: process.env.GOOGLE_API_KEY,
+      astrologyUserId: process.env.ASTROLOGY_USER_ID,
+      astrologyApiKey: process.env.ASTROLOGY_API_KEY,
     };
-  } catch (error) {
-    console.error('Error handling location data:', error);
-    return {
-      statusCode: 500,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-      body: JSON.stringify({ error: 'Internal Server Error' }),
-    };
-  }
-};
+    res.json(keys);
+});
+
+app.use('/.netlify/functions/server', router);
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(3000, () => {
+        console.log('Server is running on http://localhost:3000');
+    });
+}
+
+// Export the express app wrapped with serverless
+module.exports.handler = serverless(app);
