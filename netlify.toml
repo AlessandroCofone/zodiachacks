@@ -1,8 +1,6 @@
 [[headers]]
-  # Define the allowed origin(s)
-  for = "/*"
+  for = "/.netlify/functions/*"
     [headers.values]
-    Access-Control-Allow-Origin = "*"
-    # Add other necessary headers
+      Access-Control-Allow-Origin = "*"
 [build]
   functions = "functions"
