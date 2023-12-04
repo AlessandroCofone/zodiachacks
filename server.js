@@ -5,6 +5,18 @@ const port = process.env.PORT || 3000;
 // Middleware to parse JSON requests
 app.use(express.json());
 
+// server.js
+exports.handler = async function (event, context) {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        // Add other necessary headers
+      },
+      body: JSON.stringify({ message: 'Hello World' }),
+    };
+  };
+
 // Define routes
 app.post('/.netlify/functions/initAutocomplete', require('./netlify/functions/initAutocomplete').handler);
 app.post('/.netlify/functions/validateFormData', require('./netlify/functions/validateFormData').handler);
