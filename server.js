@@ -1,17 +1,13 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Use environment variables to store sensitive information
-const googleApiKey = process.env.GOOGLE_API_KEY;
-const astrologyUserId = process.env.ASTROLOGY_USER_ID;
-const astrologyApiKey = process.env.ASTROLOGY_API_KEY;
-
-app.get('/credentials', (req, res) => {
+app.get('/', (req, res) => {
+  // Expose credentials from .env file
   res.json({
-    googleApiKey,
-    astrologyUserId,
-    astrologyApiKey,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    ASTROLOGY_USER_ID: process.env.ASTROLOGY_USER_ID,
+    ASTROLOGY_API_KEY: process.env.ASTROLOGY_API_KEY,
   });
 });
 
